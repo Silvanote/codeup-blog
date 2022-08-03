@@ -1,38 +1,29 @@
 package com.codeup.springblog.controllers;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class MathController {
-    @GetMapping("/add/3/and/4")
-    @ResponseBody
-    public String reportNumber(@PathVariable int num) {
-        String add = String.format("Here are some truths of the number %d.", num);
-        String subtract = String.format("The number %d is even: %b.", num, num % 2 == 0., num);
-        String multiply = String.format("The number %d is squared: %d.", num, (int) (Math.pow(num, 2)));
-        String divide = String.format("The number %d is even: %b.", num, num % 2 == 0., num);
-        return String.format("<h3>%s</h3>" +
-                add, subtract, multiply, divide);
-    }
+@RequestMapping(path="/add/{n1}/and/{n2}", method = RequestMethod.GET)
+@ResponseBody
+public String add(@PathVariable int n1, @PathVariable int n2){
+    return String.format("%d + %d = %d", n1, n2, n1+n2);
+}
 
-    @GetMapping("/subtract/3/from/10")
+    @RequestMapping(path="/subtract/{n1}/from/{n2}", method = RequestMethod.GET)
     @ResponseBody
-    public String subtract() {
-        return "<h1>Hello from Spring!</h1>";
+    public String subtract(@PathVariable int n1, @PathVariable int n2) {
+        return String.format("%d + %d = %d", n1, n2, n1 - n2);
     }
-
-    @GetMapping("/multiply/4/and/5")
+    @RequestMapping(path="/multiply/{n1}/from/{n2}", method = RequestMethod.GET)
     @ResponseBody
-    public String multiply() {
-        return "<h1>Hello from Spring!</h1>";
+        public String multiply(@PathVariable int n1, @PathVariable int n2) {
+        return String.format("%d * %d = %d", n1, n2, n1 - n2);
     }
-
-    @GetMapping("/divide/6/by/3")
+    @RequestMapping(path="/divide/{n1}/from/{n2}", method = RequestMethod.GET)
     @ResponseBody
-    public String divide() {
-        return "<h1>Hello from Spring!</h1>";
+            public String divide(@PathVariable int n1, @PathVariable int n2) {
+        return String.format("%d / %d = %d", n1, n2, n1 - n2);
     }
 }
