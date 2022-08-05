@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title></title>
+</head>
+<body>
+<form action="/toys/create" method="post">
+  <label for="name">Name of Toy:</label>
+  <input type="text" name="name" id="name">
+  <select name="dog" id="dog" >
+    <option th:each="dog : ${dogs}" th:text="${dog.name}" th:value="${dog.id}"></option>
+  </select>
+  <button type="submit">Create Toy</button>
+</form>
+</body>
+</html>

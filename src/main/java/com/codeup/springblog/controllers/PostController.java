@@ -1,6 +1,7 @@
 package com.codeup.springblog.controllers;
 
 import com.codeup.springblog.models.Post;
+import com.codeup.springblog.repositories.PostRespository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +14,14 @@ import java.util.List;
 
 @Controller
 public class PostController {
+
+    private PostRespository postsDao;
+
+    public PostController(PostRespository postsDao){
+        this.postsDao = postsDao;
+    }
+
+
     @RequestMapping(path = "/posts", method = RequestMethod.GET)
     public String viewAllPosts(Model model){
     List<Post> allPosts = new ArrayList<>();
